@@ -40,7 +40,7 @@ return {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'haskell', 'cabal', 'lua', 'typescript', 'tsx', 'javascript', 'json' },
+      ensure_installed = { 'haskell', 'cabal', 'lua', 'typescript', 'tsx', 'javascript', 'json', 'python' },
       highlight = { enable = true },
     }
   },

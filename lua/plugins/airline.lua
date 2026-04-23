@@ -4,6 +4,7 @@ return {
     dependencies = {
       'vim-airline/vim-airline-themes',
       'nvim-tree/nvim-web-devicons', -- For file icons
+      'rebelot/kanagawa.nvim',
     },
     config = function()
       -- General Airline Settings

@@ -29,7 +29,11 @@ vim.diagnostic.config({
 
 -- Auto-reload files changed outside of Neovim
 vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
-  command = 'checktime',
+  callback = function()
+    if vim.fn.getcmdwintype() == '' then
+      vim.cmd('checktime')
+    end
+  end,
 })
 
 require('keymaps')

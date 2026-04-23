@@ -1,8 +1,18 @@
 -- Buffer navigation
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', { silent = true })
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', { silent = true })
-vim.keymap.set('n', '<Del>', ':bdelete<CR>', { silent = true }) -- forward-delete / other keyboards
-vim.keymap.set('n', '<BS>', ':bdelete<CR>', { silent = true })  -- Mac delete key
+local function close_buffer()
+  local bufs = vim.tbl_filter(function(b)
+    return vim.bo[b].buflisted and b ~= vim.api.nvim_get_current_buf()
+  end, vim.api.nvim_list_bufs())
+  if #bufs > 0 then
+    vim.cmd('bnext')
+  end
+  vim.cmd('bdelete #')
+end
+
+vim.keymap.set('n', '<Del>', close_buffer, { silent = true }) -- forward-delete / other keyboards
+vim.keymap.set('n', '<BS>', close_buffer, { silent = true })  -- Mac delete key
 
 -- Diagnostics
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float, { desc = "Show line diagnostic" })
